@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- About -->
+<section id="about">
+    <div class="container">
+        <div class="row gy-4 align-items-center">
+            {% for about in abouts %}
+            <div class="col-lg-5">
+                <img src="{{ about.photo.url }}" alt="">
+            </div>
+            <div class="col-lg-5">
+                <h1>{{ about.title }}</h1>
+                <div class="divider my-4"></div>
+                <p>{{ about.desc }}</p>
+                <a href="{% url 'menu' %}" class="btn btn-brand">Explore Menu</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

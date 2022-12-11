@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+ <!-- Reservation -->
+ <section id="reservation">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 intro-text">
+                <h1>Book Your Table</h1>
+                <p>Are you excited to dine on the moon?</p>
+            </div>
+        </div>
+        <form action="{% url 'reservation' %}" method="POST" class="row justify-content-center">
+            {% csrf_token %}
+            <div class="col-lg-8">
+                <div class="row g-3">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="First Name" name="firstname" {% if user.is_authenticated %} value="{{user.first_name}}"  {% endif %} required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="Last Name" name="lastname" {% if user.is_authenticated %} value="{{user.last_name}}"  {% endif %} required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="number" class="form-control" min="1" max="5" value="1" name="quantity" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="email" class="form-control" placeholder="Email address" name="email" required {% if user.is_authenticated %} value="{{user.email}}"  {% endif %} required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="date" class="form-control" placeholder="Date" name="desiredate" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="time"  value="09:00"  class="form-control" placeholder="Time" name="desiretime" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <textarea id="" cols="30" rows="4" class="form-control"
+                            placeholder="Meesage" name="message" required></textarea>
+                    </div>
+                    <div class="form-group text-center col-md-12">
+                        <input type="submit" class="btn btn-brand" value="Send Message">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Insta Posts -->
+<div class="row g-0">
+    <div class="col-lg-3 col-sm-6">
+        <div class="insta-post">
+            <img src="{% static 'images/insta_post01.jpg' %}" alt="">
+            <a href="#" class="insta-btn">
+                <i class="ri-instagram-fill"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="insta-post">
+            <img src="{% static 'images/insta_post02.jpg' %}" alt="">
+            <a href="#" class="insta-btn">
+                <i class="ri-instagram-fill"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="insta-post">
+            <img src="{% static 'images/insta_post03.jpg' %}" alt="">
+            <a href="#" class="insta-btn">
+                <i class="ri-instagram-fill"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="insta-post">
+            <img src="{% static 'images/insta_post04.jpg' %}" alt="">
+            <a href="#" class="insta-btn">
+                <i class="ri-instagram-fill"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

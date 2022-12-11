@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section id="about">
+	<div class="container">
+		<div class="row gy-4 align-items-center">
+			<div class="col-lg-5">
+				<h1>{{chefs.name}}</h1>
+				<div class="divider my-4"></div>
+				<p>{{chefs.desc}}</p>
+				
+			</div>
+			<div class="col-lg-5">
+				<img src="{{chefs.photo.url}}" alt="">
+			</div>
+			
+		</div>
+	</div>
+</section>
+
+
+
+{% endblock %}

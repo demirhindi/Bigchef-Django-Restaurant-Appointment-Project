@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 intro-text">
+                <h1>Blog Posts</h1>
+                
+            </div>
+        </div>
+        <div class="row gy-4">
+            {% for blog in blogs %}
+            <div class="col-sm-6">
+                <div class="blog-post d-flex shadow-on-hover">
+                    <img src="{{ blog.photo.url }}" alt="">
+                    <div class="blog-post-content p-4">
+                        <p>Posted: {{ blog.created }}</p>
+                        <h4><a href="{{blog.get_url}}">{{ blog.title }}
+                            </a></h4>
+                        <p>{{ blog.desc}}</p>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}

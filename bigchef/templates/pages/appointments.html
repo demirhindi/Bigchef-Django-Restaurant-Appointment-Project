@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<!-- About -->
+<section id="about">
+    <div class="container">
+        <div class="row gy-4 align-items-center">
+            {% if user.is_authenticated %}
+            {% if request.user.is_staff %}
+            {% for appointment in appointments %}
+            <div class="col-lg-3 col-sm-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      
+                      <a class="card-title" href="{{ appointment.get_url }}">{{ appointment.first_name }} {{ appointment.last_name }}</a>
+                      <h6 class="card-subtitle mb-2 text-muted">{{ appointment.desire_date }} {{ appointment.desire_time }}</h6>
+                      <p class="card-text">{{ appointment.accepted }}</p>
+                      <p class="card-text">{{ appointment.message|truncatewords:5 }}</p>
+                      <p class="card-text">{{ appointment.id }}</p>
+                      <form action="{% url 'appointments' %}" method="POST">
+                      {% csrf_token %}
+                      <input type="submit"  class="card-link bg-primary" value="Accept" name="status">
+                      <input type="submit" class="card-link bg-danger" value="Decline" name="status">
+                      <input type="hidden" value="{{ appointment.id }}" name="id">
+                      </form>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endif %}
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% load humanize %}
+
+<section id="about">
+	<div class="container">
+		<div class="row gy-4 align-items-center">
+			<div class="col-lg-5">
+				<h1>{{ blogs.title }}</h1>
+				<div class="divider my-4"></div>
+				<p>{{ blogs.content }}</p>
+				
+			</div>
+			<div class="col-lg-5">
+				<img src="{{ blogs.photo.url }}" alt="">
+			</div>
+			
+		</div>
+	</div>
+</section>
+
+
+<div class="single-post__comment">
+    <div class="widget__title">
+        <h4> Comments </h4>
+    </div>
+    <div class="single-post__comment__item">
+        {% for comment in comments %}
+        <div class="single-post__comment__item__text">
+            <h5>{{ comment.user.first_name }}  {{ comment.user.last_name }}</h5>
+            <span>{{ comment.date|naturaltime }}</span>
+            <p>{{ comment.bodytext }}</p>
+            
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+{% if user.is_authenticated %}
+<div class="single-post__leave__comment">
+    <div class="widget__title">
+        <h4>Leave a comment</h4>
+    </div>
+    <form action="#" method="POST">
+        {% csrf_token %}
+        
+        {{ forms.as_p }}
+        <input type="submit"class="site-btn" value="Submit"></button>
+        
+    </form>
+</div>
+{% endif %}
+
+
+
+{% endblock %}

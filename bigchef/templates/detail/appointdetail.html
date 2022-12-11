@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- About -->
+{% if user.is_authenticated %}
+{% if request.user.is_staff %}
+<section id="about">
+    <div class="container">
+        <div class="row gy-4 align-items-center">            
+            <div class="col-lg-10">
+                <h1>{{ appointquery.first_name }} {{ appointquery.last_name }}</h1>
+                <div class="divider my-4"></div>
+                <p>{{ appointquery.message}}</p>
+                
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endif %}
+
+{% endblock %}

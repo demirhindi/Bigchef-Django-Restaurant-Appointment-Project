@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- Team -->
+<section id="team">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 intro-text">
+                <h1>Our Team Members</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae sint temporibus natus optio
+                    eveniet nobis accusantium?</p>
+            </div>
+        </div>
+        <div class="row gy-4">
+            {% for chef in chefs %}
+            <div class="col-lg-3 col-sm-6">
+                <div class="team-member px-4 py-5 border shadow-on-hover text-center">
+                    <img src="{{ chef.photo.url }}" alt="">
+                    <div class="team-member-content">
+                        <a href="{{chef.get_url}}" class="mb-0 mt-4">{{ chef.name }}</a>
+                        
+                        <p class="mb-0">{{ chef.desc }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
+
